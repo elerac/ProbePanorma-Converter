@@ -14,7 +14,6 @@ def main():
     sampling_type = 1 #0:nearest neighbor, 1:bilinear interpolation
    
     img_probe = cv2.imread(fn_src, 1)
-    img_probe = cv2.resize(img_probe, (916, 916))
     height_probe, width_probe = img_probe.shape[:2]
     print("probe size:", width_probe, height_probe)
     if height_probe!=width_probe:
