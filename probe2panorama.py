@@ -4,20 +4,16 @@ import sys
 from math import pi, sin, cos
 
 def main():
-    #fn_src = "../debevec_light/probe/beach_probe.hdr"
-    #fn_src = "../debevec_light/probe/building_probe.hdr"
-    fn_src = "../debevec_light/probe/campus_probe.hdr"
-    #fn_src = "sample_probe.hdr"
-    fn_src = "entrance_probe.hdr"
+    fn_src = "image/park_probe.jpg"
 
-    fn_dst = "panorama.hdr"
+    fn_dst = "image/park_panorama.jpg"
 
     height_panorama = 180 * 4
     width_panorama = height_panorama*2
     
-    sampling_type = 0 #0:nearest neighbor, 1:bilinear interpolation
+    sampling_type = 1 #0:nearest neighbor, 1:bilinear interpolation
    
-    img_probe = cv2.imread(fn_src, -1)
+    img_probe = cv2.imread(fn_src, 1)
     img_probe = cv2.resize(img_probe, (916, 916))
     height_probe, width_probe = img_probe.shape[:2]
     print("probe size:", width_probe, height_probe)
@@ -25,7 +21,7 @@ def main():
         print("Enter an image with aspect ratio 1:1")
         exit()
 
-    img_panorama = np.zeros((height_panorama, width_panorama, 3), dtype=np.float32)
+    img_panorama = np.zeros((height_panorama, width_panorama, 3), dtype=np.uint8)
 
     for col in range(height_panorama):
         for row in range(width_panorama):
