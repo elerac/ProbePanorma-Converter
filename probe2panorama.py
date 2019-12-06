@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import sys
 from math import pi, sin, cos
 
 def main():
@@ -16,9 +15,7 @@ def main():
     img_probe = cv2.imread(fn_src, 1)
     height_probe, width_probe = img_probe.shape[:2]
     print("probe size:", width_probe, height_probe)
-    if height_probe!=width_probe:
-        print("Enter an image with aspect ratio 1:1")
-        exit()
+    assert height_probe==width_probe, "Enter an image with aspect ratio 1:1"
 
     img_panorama = np.zeros((height_panorama, width_panorama, 3), dtype=np.uint8)
 
@@ -49,4 +46,4 @@ def main():
     print("panorama size:", width_panorama, height_panorama)
 
 if __name__=='__main__':
-    sys.exit(main())
+    main()
